@@ -1,3 +1,13 @@
+// Function variables
+const weatherForecast = $("#weather-forecast");
+const weatherInfo = $("#weather-info");
+const clothingOptions = $("#clothing-options");
+const clothingInfo = $("#clothing-info");
+const searchButton = $("button");
+const inputField = $("input");
+const previousSearches = $("#search-list");
+
+// API keys
 var asosAPIKey = "f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d";
 
 
