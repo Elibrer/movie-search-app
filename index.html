@@ -1,33 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/reset.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
 
-
-
-
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Document</title>
-</head>
 
+  </head>
 
+  <body>
+    <header>
+      <div class="header-title">Outfit Forecast</div>
+    </header>
 
-<body>
+    <form>
+      <label for="city">Enter City:</label>
+      <input type="text" id="city" name="city" placeholder="e.g. Sydney" />
+      <button type="submit" value="Submit">Search</button>
+    </form>
 
+    <div id="previous-searches">
+      <h2>Previous Searches:</h2>
+      <ul id="search-list">
+        <!-- List of previous searches will be populated here -->
+      </ul>
+    </div>
 
+    <div id="weather-forecast">
+        <h2>Weather Forecast:</h2>
+        <div id="weather-info"></div>
+        <!-- Use js to have the forecast display here -->
+        <!-- In CSS set display to none until the the submit button is clicked -->
+      </div>
+      
+      <div id="clothing-options">
+        <h2>Clothing Options:</h2>
+        <div id="clothing-info"></div>
+        <!-- Use js to have the clothing options display here -->
+        <!-- In CSS set display to none until the the submit button is clicked -->
+      </div>
 
-
-
-
-
-
-
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <script src="./assets/js/script.js"></script>
-</body>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </body>
 </html>
