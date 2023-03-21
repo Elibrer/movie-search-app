@@ -1,3 +1,4 @@
+
 // Function variables
 const weatherForecast = $("#weather-forecast");
 const weatherInfo = $("#weather-info");
@@ -10,109 +11,121 @@ const previousSearches = $("#search-list");
 // API keys
 var asosAPIKey = "f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d";
 
+const openWeatherAPIKey = "7ae6f66d2cf4fdbd254603d563937e4c";
+const asosAPIKey = "f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d";
+
+
 
 
 //Category ID's
 //Mens
-var mensWinterCID = 21121;
-var mensSummerCID = 50085;
+const mensWinterCID = 21121;
+const mensSummerCID = 50085;
 //Womens
-var womensWinterCID = 20061;
-var womensSummerCID = 14626;
+const womensWinterCID = 20061;
+const womensSummerCID = 14626;
 
 //Product ID's
 //Summer
-var summerMensShirtPID = 204454519;
-var summerMensShortsPID = 203742756;
-var summerMensShoesPID = 204317591;
+const summerMensShirtPID = 204454519;
+const summerMensShortsPID = 203742756;
+const summerMensShoesPID = 204317591;
 //Winter
-var winterMensCoatPID = 202344973;
-var winterMensPantsPID = 204229945;
-var winterMensHeadPID = 203682741;
+const winterMensCoatPID = 202344973;
+const winterMensPantsPID = 204229945;
+const winterMensHeadPID = 203682741;
 
 
 
-function init() {
 
-    //Get everything
+function cityInputSearch() {
+    //let inputValue = inputField.val();
+    // if (!inputValue) {
+    //     alert('Please enter a value into the search bar.');
+    //     return;
+    // }
 
-    // const settings = {
-    //     "async": true,
-    //     "crossDomain": true,
-    //     "url": "https://asos2.p.rapidapi.com/categories/list?country=US&lang=en-US",
-    //     "method": "GET",
-    //     "headers": {
-    //         "X-RapidAPI-Key": asosAPIKey,
-    //         "X-RapidAPI-Host": "asos2.p.rapidapi.com"
-    //     }
-    // };
-    
-    // $.ajax(settings).done(function (response) {
-    //     console.log(response);
-    // });
+    let openWeatherAPIURL = "https://api.openweathermap.org/data/2.5/weather?q=" + "sydney" + "&appid=" + openWeatherAPIKey + "&units=metric";
 
-
-
-    //Get Product
-
-    // const settings = {
-    //     "async": true,
-    //     "crossDomain": true,
-    //     "url": "https://asos2.p.rapidapi.com/products/v3/detail?id=204454519&lang=en-US&store=US&sizeSchema=US&currency=USD",
-    //     "method": "GET",
-    //     "headers": {
-    //         "X-RapidAPI-Key": asosAPIKey,
-    //         "X-RapidAPI-Host": "asos2.p.rapidapi.com"
-    //     }
-    // };
-    
-    // $.ajax(settings).done(function (response) {
-    //     console.log(response);
-
-    // });
-
-
-
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d',
-            'X-RapidAPI-Host': 'asos2.p.rapidapi.com'
-        }
-    };
-    
-    fetch('https://asos2.p.rapidapi.com/products/v3/detail?id=9851612&lang=en-US&store=US&sizeSchema=US&currency=USD', options)
+    fetch(openWeatherAPIURL , {
+        method: 'GET', 
+        credentials: 'same-origin', 
+        redirect: 'follow', 
+    })
     .then(function (response) {
-        return response.json();
+    return response.json();
     })
     .then(function (data) {
-        console.log(data);
+    console.log(data.main.temp + "°C")
     })
-    .catch((error) => {
-        console.error("There has been a problem with your fetch operation:");
-    });
 
+    let summmerMensShirtURL ="https://asos2.p.rapidapi.com/products/v3/detail?" + summerMensShirtPID + " &lang=en-US&store=US&sizeSchema=US&currency=USD";
+    let summmerMensShortsURL = "https://asos2.p.rapidapi.com/products/v3/detail?" + summerMensShortsPID + " &lang=en-US&store=US&sizeSchema=US&currency=USD";
+    let summmerMensShoesURL = "https://asos2.p.rapidapi.com/products/v3/detail?" + summerMensShoesPID + " &lang=en-US&store=US&sizeSchema=US&currency=USD";
 
-
-    //Get category
-
-    // const settings = {
-    //     "async": true,
-    //     "crossDomain": true,
-    //     "url": "https://asos2.p.rapidapi.com/products/v2/list?store=US&offset=0&categoryId="+ catagoryObj + "&limit=48&country=US&sort=freshness&currency=USD&sizeSchema=US&lang=en-US",
-    //     "method": "GET",
-    //     "headers": {
-    //         "X-RapidAPI-Key": asosAPIKey,
-    //         "X-RapidAPI-Host": "asos2.p.rapidapi.com"
-    //     }
-    // };
     
-    // $.ajax(settings).done(function (response) {
-    //     console.log(response);
-    // });
+
 }
 
-init();
+
+cityInputSearch();
+
+
+function getAPI() {
+
+    //Options for each fetch request to ensure the header is seen by the ASOS server, allowing access
+    // const options = {
+    //     method: 'GET',
+    //     headers: {
+    //         'X-RapidAPI-Key': 'f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d',
+    //         'X-RapidAPI-Host': 'asos2.p.rapidapi.com'
+    //     }
+    // };
+
+    // //Get Product
+    // fetch('https://asos2.p.rapidapi.com/products/v3/detail?id=9851612&lang=en-US&store=US&sizeSchema=US&currency=USD', options)
+    // .then(function (response) {
+    //     return response.json();
+    // })
+    // .then(function (data) {
+    //     console.log(data);
+    // })
+    // .catch((error) => {
+    //     console.error("There has been a problem with your fetch operation:");
+    // });
+
+
+    //Get category - to be used for phase 2 of product design
+    // fetch('https://asos2.p.rapidapi.com/products/v2/list?store=US&offset=0&categoryId='+ catagoryObj + '&limit=48&country=US&sort=freshness&currency=USD&sizeSchema=US&lang=en-US', options)
+    // .then(function (response) {
+    //     return response.json();
+    // })
+    // .then(function (data) {
+    //     console.log(data);
+    // })
+    // .catch((error) => {
+    //     console.error("There has been a problem with your fetch operation:");
+    // });
+
+
+
+    //Get everything
+    // fetch('https://asos2.p.rapidapi.com/categories/list?country=US&lang=en-US', options)
+    // .then(function (response) {
+    //     return response.json();
+    // })
+    // .then(function (data) {
+    //     console.log(data);
+    // })
+    // .catch((error) => {
+    //     console.error("There has been a problem with your fetch operation:");
+    // });
+
+    
+
+}
+
+getAPI();
 
 
 
@@ -120,5 +133,4 @@ init();
 
 
 
-// fetchAsosAPI();
 
