@@ -1,3 +1,5 @@
+$(function(){
+
 
 // Function variables
 const weatherForecast = $("#weather-forecast");
@@ -5,11 +7,12 @@ const weatherInfo = $("#weather-info");
 const clothingOptions = $("#clothing-options");
 const clothingInfo = $("#clothing-info");
 const searchButton = $("button");
-const inputField = $("input");
+const inputField = $("#city");
 const previousSearches = $("#search-list");
+const submitCityBtn = $("#submit-city");
 
-// API keys
-var asosAPIKey = "f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d";
+// // API keys
+// var asosAPIKey = "f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d";
 
 const openWeatherAPIKey = "7ae6f66d2cf4fdbd254603d563937e4c";
 const asosAPIKey = "f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d";
@@ -38,14 +41,14 @@ const winterMensHeadPID = 203682741;
 
 
 
-function cityInputSearch() {
+function cityInputSearch(city) {
     //let inputValue = inputField.val();
     // if (!inputValue) {
     //     alert('Please enter a value into the search bar.');
     //     return;
     // }
 
-    let openWeatherAPIURL = "https://api.openweathermap.org/data/2.5/weather?q=" + "sydney" + "&appid=" + openWeatherAPIKey + "&units=metric";
+    let openWeatherAPIURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + openWeatherAPIKey + "&units=metric";
 
     fetch(openWeatherAPIURL , {
         method: 'GET', 
@@ -56,7 +59,9 @@ function cityInputSearch() {
     return response.json();
     })
     .then(function (data) {
+       
     console.log(data.main.temp + "°C")
+
     })
 
     let summmerMensShirtURL ="https://asos2.p.rapidapi.com/products/v3/detail?" + summerMensShirtPID + " &lang=en-US&store=US&sizeSchema=US&currency=USD";
@@ -67,8 +72,14 @@ function cityInputSearch() {
 
 }
 
+submitCityBtn.on("click", function(event){
+    console.log("test")
+    event.preventDefault();
+    var city = inputField.val()
+    console.log(city)
+    cityInputSearch(city);
+})
 
-cityInputSearch();
 
 
 function getAPI() {
@@ -134,3 +145,4 @@ getAPI();
 
 
 
+})
