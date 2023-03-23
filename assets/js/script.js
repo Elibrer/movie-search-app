@@ -42,7 +42,7 @@ const winterMensHeadPID = 203682741;
 
 
 function cityInputSearch(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
     var inputValue = inputField.val();
     if (!inputValue) {
@@ -61,7 +61,7 @@ function cityInputSearch(event) {
     return response.json();
     })
     .then(function (data) {
-       
+    inputField.val("");
     console.log(data.main.temp + "°C")
 
     weatherInfo.text(data.main.temp + "°C")
