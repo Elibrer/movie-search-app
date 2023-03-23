@@ -6,13 +6,12 @@ const weatherForecast = $("#weather-forecast");
 const weatherInfo = $("#weather-info");
 const clothingOptions = $("#clothing-options");
 const clothingInfo = $("#clothing-info");
+
 const searchButton = $("button");
 const inputField = $("#city");
+
 const previousSearches = $("#search-list");
 const submitCityBtn = $("#submit-city");
-
-// // API keys
-// var asosAPIKey = "f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d";
 
 const openWeatherAPIKey = "7ae6f66d2cf4fdbd254603d563937e4c";
 const asosAPIKey = "f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d";
@@ -41,14 +40,17 @@ const winterMensHeadPID = 203682741;
 
 
 
-function cityInputSearch(city) {
-    //let inputValue = inputField.val();
-    // if (!inputValue) {
-    //     alert('Please enter a value into the search bar.');
-    //     return;
-    // }
 
-    let openWeatherAPIURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + openWeatherAPIKey + "&units=metric";
+function cityInputSearch(event) {
+    event.preventDefault();
+
+    var inputValue = inputField.val();
+    if (!inputValue) {
+        alert('Please enter a value into the search bar.');
+        return;
+    }
+
+    var openWeatherAPIURL = "https://api.openweathermap.org/data/2.5/weather?q=" + inputValue + "&appid=" + openWeatherAPIKey + "&units=metric";
 
     fetch(openWeatherAPIURL , {
         method: 'GET', 
@@ -62,14 +64,18 @@ function cityInputSearch(city) {
        
     console.log(data.main.temp + "°C")
 
-    })
+    weatherInfo.text(data.main.temp + "°C")
 
-    let summmerMensShirtURL ="https://asos2.p.rapidapi.com/products/v3/detail?" + summerMensShirtPID + " &lang=en-US&store=US&sizeSchema=US&currency=USD";
-    let summmerMensShortsURL = "https://asos2.p.rapidapi.com/products/v3/detail?" + summerMensShortsPID + " &lang=en-US&store=US&sizeSchema=US&currency=USD";
-    let summmerMensShoesURL = "https://asos2.p.rapidapi.com/products/v3/detail?" + summerMensShoesPID + " &lang=en-US&store=US&sizeSchema=US&currency=USD";
+
+    })
 
     
 
+    // var summmerMensShirtURL ="https://asos2.p.rapidapi.com/products/v3/detail?" + summerMensShirtPID + " &lang=en-US&store=US&sizeSchema=US&currency=USD";
+    // var summmerMensShortsURL = "https://asos2.p.rapidapi.com/products/v3/detail?" + summerMensShortsPID + " &lang=en-US&store=US&sizeSchema=US&currency=USD";
+    // var summmerMensShoesURL = "https://asos2.p.rapidapi.com/products/v3/detail?" + summerMensShoesPID + " &lang=en-US&store=US&sizeSchema=US&currency=USD";
+
+    
 }
 
 submitCityBtn.on("click", function(event){
@@ -82,7 +88,7 @@ submitCityBtn.on("click", function(event){
 
 
 
-function getAPI() {
+//function getAPI() {
 
     //Options for each fetch request to ensure the header is seen by the ASOS server, allowing access
     // const options = {
@@ -134,12 +140,11 @@ function getAPI() {
 
     
 
-}
-
-getAPI();
+//}
 
 
 
+searchButton.click(cityInputSearch);
 
 
 
