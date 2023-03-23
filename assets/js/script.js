@@ -86,6 +86,14 @@ submitCityBtn.on("click", function(event){
     cityInputSearch(city);
 })
 
+var timeDisplayEl = $('#currentDay');
+function displayTime() {
+    var rightNow = dayjs().format('dddd, MMMM D, YYYY');
+    console.log(rightNow);
+    timeDisplayEl.text(rightNow);
+  };
+  
+displayTime();
 
 
 //function getAPI() {
