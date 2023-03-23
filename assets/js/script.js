@@ -1,14 +1,17 @@
+$(function(){
+
 
 // Function variables
 const weatherForecast = $("#weather-forecast");
 const weatherInfo = $("#weather-info");
 const clothingOptions = $("#clothing-options");
 const clothingInfo = $("#clothing-info");
-var searchButton = $("button");
-var inputField = $("#city");
-const previousSearches = $("#search-list");
 
-// API keys
+const searchButton = $("button");
+const inputField = $("#city");
+
+const previousSearches = $("#search-list");
+const submitCityBtn = $("#submit-city");
 
 const openWeatherAPIKey = "7ae6f66d2cf4fdbd254603d563937e4c";
 const asosAPIKey = "f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d";
@@ -37,6 +40,7 @@ const winterMensHeadPID = 203682741;
 
 
 
+
 function cityInputSearch(event) {
     event.preventDefault();
 
@@ -48,7 +52,6 @@ function cityInputSearch(event) {
 
     var openWeatherAPIURL = "https://api.openweathermap.org/data/2.5/weather?q=" + inputValue + "&appid=" + openWeatherAPIKey + "&units=metric";
 
-
     fetch(openWeatherAPIURL , {
         method: 'GET', 
         credentials: 'same-origin', 
@@ -58,8 +61,12 @@ function cityInputSearch(event) {
     return response.json();
     })
     .then(function (data) {
+       
     console.log(data.main.temp + "°C")
+
     weatherInfo.text(data.main.temp + "°C")
+
+
     })
 
     
@@ -71,6 +78,13 @@ function cityInputSearch(event) {
     
 }
 
+submitCityBtn.on("click", function(event){
+    console.log("test")
+    event.preventDefault();
+    var city = inputField.val()
+    console.log(city)
+    cityInputSearch(city);
+})
 
 
 
@@ -136,3 +150,4 @@ searchButton.click(cityInputSearch);
 
 
 
+})
