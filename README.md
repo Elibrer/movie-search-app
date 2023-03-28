@@ -12,9 +12,11 @@ See below for GitHub pages link and URL of the webpage:
 
 ## Usage
 
-This webpage is used for for people who don't know what to wear for the day (we've all been there). Based on the current temperature it will give you 3 items of clothing to wear, a hat (oft sorts), a top, and a pair of pants/shorts.
+This webpage is used for for people who don't know what to wear for the day (we've all been there). Based on the current temperature it will give you 3 items of clothing to wear, a hat (e.g. cap or beanie), a top, and a pair of pants/shorts.
 
 Enter the city you currently live in for some inspiration for the day or enter a city you are travelling to get an idea of what to pack for your upcoming trip.
+
+![outfit-forecast](https://user-images.githubusercontent.com/121011030/228145070-00170d88-ceb7-4f98-a07c-a004c517f5ee.png)
 
 ## License
 
