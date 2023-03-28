@@ -2,7 +2,7 @@
 
 ## Description
 
-This webpage is designed to provide clothing options based on the current weather. You can enter any city into the input field to get the current temperature a list of clothes that are suitable for the current temperature.
+This webpage is designed to provide clothing options based on the current weather. You can enter any city into the input field to get the current temperature and a list of clothes that are suitable for the current temperature.
 
 This webpage is useful for getting ideas on what to pack for your upcoming trip to a city that you're unfamiliar with.
 

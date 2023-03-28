@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css?family=Inter:400,700" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter:400,700"
+      rel="stylesheet"
+    />
     <title>Outfit Forecast</title>
-    <link rel="icon" href="./assets/images/sun-icon.webp" type="image/icon type">
-    <link rel="stylesheet" href="./assets/css/style.css">
-
+    <link
+      rel="icon"
+      href="./assets/images/sun-icon.webp"
+      type="image/icon type"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
 
   <body class="bg-image text-sm text-gray-700 font-medium font-inter">
@@ -21,37 +27,48 @@
       </div>
     </header>
 
-<div class="bg-cover bg-center" style="background-image: url('./assets/images/weather-app-background-image.jpg')"></div>
+    <div
+      class="bg-cover bg-center"
+      style="
+        background-image: url('./assets/images/weather-app-background-image.jpg');
+      "
+    ></div>
 
     <div class="container mx-auto flex flex-col items-center">
       <form class="my-4" action="">
         <label for="city">Enter City:</label>
-        <input type="text" id="city" name="city" placeholder="e.g. Sydney" class="py-2 px-4 rounded-full"/>
+        <input
+          type="text"
+          id="city"
+          name="city"
+          placeholder="e.g. Sydney"
+          class="py-2 px-4 rounded-full"
+        />
         <button type="click" id="submit-city">Search</button>
       </form>
-    
+
       <div id="previous-searches" class="my-1 text-center">
-        <h2 style="font-weight: bolder;">Previous Searches:</h2>
+        <h2 style="font-weight: bolder">Previous Searches:</h2>
         <ul id="search-list" class="grid grid-col-1">
           <!-- List of previous searches will be populated here -->
         </ul>
       </div>
-    
+
       <div id="weather-forecast" class="my-4 text-center">
-        <h2 style="font-weight: bolder;">Weather Forecast:</h2>
+        <h2 style="font-weight: bolder">Weather Forecast:</h2>
         <div id="weather-info"></div>
         <!-- Use js to have the forecast display here -->
         <!-- In CSS set display to none until the the submit button is clicked -->
       </div>
 
-      <div id="clothing-options" class="my-4 text-center flex flex-wrap justify-center">
-        <h2 style="font-weight: bolder;">Clothing Options:</h2>
+      <div
+        id="clothing-options"
+        class="my-4 text-center flex flex-wrap justify-center"
+      >
+        <h2 style="font-weight: bolder">Clothing Options:</h2>
         <div id="clothing-info"></div>
       </div>
-      
     </div>
-  
-   
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
@@ -60,6 +77,5 @@
       integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
       crossorigin="anonymous"
     ></script>
-  
   </body>
 </html>
