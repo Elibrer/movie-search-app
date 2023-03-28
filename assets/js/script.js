@@ -13,9 +13,10 @@ const previousSearches = $("#search-list");
 const submitCityBtn = $("#submit-city");
 
 let recentSearch = "";
+let pageInit = true;
 
 const openWeatherAPIKey = "7ae6f66d2cf4fdbd254603d563937e4c";
-const asosAPIKey = "f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d";
+const asosAPIKey = "f335dd15f6mshcc1a954a0c02decp10d6c0jsn429f16539d46";
 
 
 //Category ID's for Phase 2 application *Random items selected from a category*
@@ -65,13 +66,19 @@ const mildMensURL = {
 //Gathers information from localstorage, or sets array to blank if local is empty.
 let recentSearchArr = JSON.parse(localStorage.getItem("recentSearches")) || [];
 
+let initValueArr = JSON.parse(localStorage.getItem("recentSearches"));
+let initValue = initValueArr[0];
+
 //On page load.
 function init() { 
+    recentSearch = initValue;
+
     for (i = recentSearchArr.length - 1; i >=0; i--) {
         var recentBtn = $("<button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-1'></button>");
         recentBtn.text(recentSearchArr[i]);
         previousSearches.prepend(recentBtn);
     }
+    cityTempSearch(initValue);
 }
 
 //Main function to search for a selected cities weather, while executing other functions as it progresses.
@@ -163,19 +170,23 @@ function categoryItemRandomiser (clothesData) {
 
 //Function to create and append buttons with the recentSearch current value, limiting to 5 elements.
 function getRecentSearch (recentSearch) {
-    let firstRecentSearch = previousSearches.children().last();
 
-    if (recentSearchArr.length >= 5) {
-        recentSearchArr.pop();
-        firstRecentSearch.remove();
+    if (pageInit === false) {
+        let firstRecentSearch = previousSearches.children().last();
+
+        if (recentSearchArr.length >= 5) {
+            recentSearchArr.pop();
+            firstRecentSearch.remove();
+        }
+
+        var recentBtn = $("<button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-1'></button>");
+        recentBtn.text(recentSearch);
+        previousSearches.prepend(recentBtn);
+        recentSearchArr.unshift(recentSearch);
+
+        localStorage.setItem("recentSearches", JSON.stringify(recentSearchArr));
     }
-
-    var recentBtn = $("<button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-1'></button>");
-    recentBtn.text(recentSearch);
-    previousSearches.prepend(recentBtn);
-    recentSearchArr.unshift(recentSearch);
-
-    localStorage.setItem("recentSearches", JSON.stringify(recentSearchArr));
+    pageInit = false;
 }
 
 //Function to fetch clothing category data for Phase 2.
@@ -185,7 +196,7 @@ function getRandomClothesData (x) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d',
+            'X-RapidAPI-Key': asosAPIKey,
             'X-RapidAPI-Host': 'asos2.p.rapidapi.com'
         }
     };
@@ -267,7 +278,7 @@ function getClothesData (x) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d',
+            'X-RapidAPI-Key': asosAPIKey,
             'X-RapidAPI-Host': 'asos2.p.rapidapi.com'
         }
     };
