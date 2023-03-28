@@ -126,27 +126,32 @@ function displayClothes(clothesData) {
     var clothesContainer = document.createElement('article');
     var innerContainer = document.createElement('div');
 
-    clothesContainer.setAttribute("class", "columns-3 content-center bg-slate-700 text-white");
+    clothesContainer.setAttribute("class", "mx-2.5 rounded-lg flex justify-center items-center w-full sm:w-2/12 bg-sky-900 text-white");
+    innerContainer.setAttribute("class", "flex flex-wrap justify-center items-center mx-auto");
+    
+
     clothingOptions.append(clothesContainer);
     clothesContainer.append(innerContainer);
 
     innerContainer.innerHTML = `
-    <h4>${clothesData.name}</h4><a 
-    href="${clothesData.localisedData[1].pdpUrl}"><img 
-    src="https://${clothesData.media.images[0].url}"
-    class="columns-3"
-    ></a>
+    <h4 class="font-bold text-sm">${clothesData.name}</h4>
+    <a href="${clothesData.localisedData[1].pdpUrl}">
+        <img src="https://${clothesData.media.images[0].url}" class="rounded-lg shadow-lg w-full scale-75">
+    </a>
     `;
 }
 
 
+
+
 function getRecentSearch (recentSearch) {
 
-    var recentBtn = $("<button class='grid-col-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-1'></button>");
+    var recentBtn = $("<button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-1'></button>");
     recentBtn.text(recentSearch);
     previousSearches.prepend(recentBtn);
 
 }
+
 
 
 function getClothesData (x) {
