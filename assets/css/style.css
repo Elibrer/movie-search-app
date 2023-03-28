@@ -1,0 +1,6 @@
+.bg-image {
+    background-image: url('../images/weather-app-background-image.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
