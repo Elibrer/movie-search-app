@@ -104,7 +104,8 @@ function cityTempSearch(city) {
         inputField.val("");
 
         const cityTemp = data.main.temp;
-        weatherInfo.text(cityTemp + "°C")
+        weatherInfo.attr("class", "text-white font-bold");
+        weatherInfo.text(cityTemp + "°C");
 /*-----------------------------------------------------------------------------*/
 
         /*     VIP      */
