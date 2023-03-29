@@ -8,6 +8,7 @@ const clothingInfo = $("#clothing-info");
 
 const searchButton = $("button");
 const inputField = $("#city");
+const cityName = $('#city-name');
 
 const previousSearches = $("#search-list");
 const submitCityBtn = $("#submit-city");
@@ -74,7 +75,7 @@ function init() {
     recentSearch = initValue;
 
     for (i = recentSearchArr.length - 1; i >=0; i--) {
-        var recentBtn = $("<button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-1'></button>");
+        var recentBtn = $("<button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-1 mx-2'></button>");
         recentBtn.text(recentSearchArr[i]);
         previousSearches.prepend(recentBtn);
     }
@@ -86,7 +87,7 @@ function cityTempSearch(city) {
 
     recentSearch = inputField.val();
     recentSearch = recentSearch.charAt(0).toUpperCase() + recentSearch.slice(1).toLowerCase();
-
+    cityName.text(city);
     if (!city) {
         alert('Please enter a value into the search bar.');
         return;
@@ -111,7 +112,7 @@ function cityTempSearch(city) {
         inputField.val("");
 
         const cityTemp = data.main.temp;
-        weatherInfo.attr("class", "text-white font-bold");
+        weatherInfo.attr("class", "text-2xl text-white font-bold pb-2");
         weatherInfo.text(cityTemp + "°C");
 /*-----------------------------------------------------------------------------*/
 
@@ -153,10 +154,10 @@ function categoryItemRandomiser (clothesData) {
         var clothesContainer = document.createElement('article');
         var innerContainer = document.createElement('div');
     
-        clothesContainer.setAttribute("class", "mx-2.5 rounded-lg flex justify-center items-center w-full sm:w-2/12 bg-sky-900 text-white");
+        clothesContainer.setAttribute("class", "mx-2.5 rounded-lg flex justify-center items-center w-full sm:w-3/12 bg-sky-900 text-white m-2");
         innerContainer.setAttribute("class", "flex flex-wrap justify-center items-center mx-auto p-3");
         
-        clothingOptions.append(clothesContainer);
+        clothingInfo.append(clothesContainer);
         clothesContainer.append(innerContainer);
     
         innerContainer.innerHTML = `
@@ -179,7 +180,7 @@ function getRecentSearch (recentSearch) {
             firstRecentSearch.remove();
         }
 
-        var recentBtn = $("<button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-1'></button>");
+        var recentBtn = $("<button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-1 mx-2'></button>");
         recentBtn.text(recentSearch);
         previousSearches.prepend(recentBtn);
         recentSearchArr.unshift(recentSearch);
@@ -192,7 +193,7 @@ function getRecentSearch (recentSearch) {
 //Function to fetch clothing category data for Phase 2.
 function getRandomClothesData (x) {
     console.log(x);
-    clothingOptions.text('');
+    clothingInfo.text('');
     const options = {
         method: 'GET',
         headers: {
@@ -244,11 +245,11 @@ function displayClothes(clothesData) {
     var clothesContainer = document.createElement('article');
     var innerContainer = document.createElement('div');
 
-    clothesContainer.setAttribute("class", "mx-2.5 rounded-lg flex justify-center items-center w-full sm:w-2/12 bg-sky-900 text-white");
+    clothesContainer.setAttribute("class", "mx-2.5 rounded-lg flex justify-center items-center w-full sm:w-3/12 bg-sky-900 text-white m-2");
     innerContainer.setAttribute("class", "flex flex-wrap justify-center items-center mx-auto p-3");
     
 
-    clothingOptions.append(clothesContainer);
+    clothingInfo.append(clothesContainer);
     clothesContainer.append(innerContainer);
 
     //Need this to determine which of the array indexs is the en-AU one, otherwise
@@ -273,7 +274,7 @@ function displayClothes(clothesData) {
 function getClothesData (x) {
     console.log(x);
 
-    clothingOptions.text('');
+    clothingInfo.text('');
 
     const options = {
         method: 'GET',
