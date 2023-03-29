@@ -13,7 +13,7 @@ const cityName = $('#city-name');
 const previousSearches = $("#search-list");
 const submitCityBtn = $("#submit-city");
 
-let recentSearch = "";
+let recentSearch = "Sydney";
 let pageInit = true;
 
 const openWeatherAPIKey = "7ae6f66d2cf4fdbd254603d563937e4c";
@@ -65,29 +65,38 @@ const mildMensURL = {
 /*-------------------------------------------------------------------------------------------------------------------*/
 
 //Gathers information from localstorage, or sets array to blank if local is empty.
-let recentSearchArr = JSON.parse(localStorage.getItem("recentSearches")) || [];
+let recentSearchArr = JSON.parse(localStorage.getItem("recentSearches")) || ["Sydney"];
+console.log(recentSearchArr);
 
-let initValueArr = JSON.parse(localStorage.getItem("recentSearches"));
-let initValue = initValueArr[0];
+
+
+
+
+
 
 //On page load.
-function init() { 
-    recentSearch = initValue;
+function init() {     
+    localStorage.setItem("recentSearches", JSON.stringify(recentSearchArr));
+
+    recentSearch = recentSearchArr[0];
+ 
 
     for (i = recentSearchArr.length - 1; i >=0; i--) {
         var recentBtn = $("<button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-1 mx-2'></button>");
         recentBtn.text(recentSearchArr[i]);
         previousSearches.prepend(recentBtn);
     }
-    cityTempSearch(initValue);
+    cityTempSearch(recentSearch);
 }
 
 //Main function to search for a selected cities weather, while executing other functions as it progresses.
 function cityTempSearch(city) {
-
-    recentSearch = inputField.val();
+    console.log(recentSearch)
+    if (pageInit === false) {
+        recentSearch = inputField.val();
+    }
     recentSearch = recentSearch.charAt(0).toUpperCase() + recentSearch.slice(1).toLowerCase();
-    cityName.text(city);
+    cityName.text(recentSearch);
     if (!city) {
         alert('Please enter a value into the search bar.');
         return;
@@ -112,6 +121,8 @@ function cityTempSearch(city) {
         inputField.val("");
 
         const cityTemp = data.main.temp;
+        
+
         weatherInfo.attr("class", "text-2xl text-white font-bold pb-2");
         weatherInfo.text(cityTemp + "°C");
 /*-----------------------------------------------------------------------------*/
@@ -143,12 +154,14 @@ function displayTime() {
 displayTime();
 
 //Function to randomise three cards with data from category fetch, while ensuring duplicates don't occur for Phase 2.
-function categoryItemRandomiser (clothesData) {    
+function categoryItemRandomiser (clothesData) {   
+    
+    let clothesDataLength = clothesData.products.length
     let nonDuplicateArr = [];
     for (i = 0; i < 3; i++) {
         let randomIndex = 0;
         do {
-            randomIndex = Math.floor(Math.random() * recentSearchArr.length);
+            randomIndex = Math.floor(Math.random() * clothesDataLength);
         } while (nonDuplicateArr.includes(randomIndex));
         nonDuplicateArr.push(randomIndex);
         var clothesContainer = document.createElement('article');
@@ -157,6 +170,7 @@ function categoryItemRandomiser (clothesData) {
         clothesContainer.setAttribute("class", "mx-2.5 rounded-lg flex justify-center items-center w-full sm:w-3/12 bg-sky-900 text-white m-2");
         innerContainer.setAttribute("class", "flex flex-wrap justify-center items-center mx-auto p-3");
         
+
         clothingInfo.append(clothesContainer);
         clothesContainer.append(innerContainer);
     
@@ -172,7 +186,7 @@ function categoryItemRandomiser (clothesData) {
 //Function to create and append buttons with the recentSearch current value, limiting to 5 elements.
 function getRecentSearch (recentSearch) {
 
-    if (pageInit === false) {
+   if (pageInit === false) {
         let firstRecentSearch = previousSearches.children().last();
 
         if (recentSearchArr.length >= 5) {
@@ -466,6 +480,8 @@ init();
 $(document).on('click', "#search-list button", function(event){
     let buttonContent = $(this).text();
     inputField.val(buttonContent);
+    let city = inputField.val()
+
     cityTempSearch(inputField.val());
 })
 
