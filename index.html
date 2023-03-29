@@ -21,19 +21,22 @@
       </div>
     </header>
 
-<div class="bg-cover bg-center" style="background-image: url('./assets/images/weather-app-background-image.jpg')"></div>
+<div ></div>
 
     <div class="container mx-auto flex flex-col items-center">
-      <form class="my-6" action="">
-        <!--<label for="city" class="font-bold text-l text-white px-6">Enter City:</label>-->
+      <form class="bg-sky-900 w-2/3 bg-opacity-80 flex flex-col items-center rounded p-5 my-4" action="">
+        <h2 class="text-white font-bold text-xl p-1">Search for a city</h2>
+        <p class="italic text-sm pb-2 text-white">And we will provide suitable clothing recomendations for you...</p>
+        <div>
         <input type="text" id="city" name="city" placeholder="Enter City" class="py-4 px-6 rounded-full" autocomplete="off"/>
-        <button type="click" id="submit-city" class="hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">Search</button>
+        <button type="click" id="submit-city" class="bg-gray-400 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Search</button>
+        </div>
       </form>
     
-      <div class="bg-sky-900 container mx-auto px-4 md:px-6 lg:px-8 rounded-lg" >
-        <div id="previous-searches" class="my-1 text-center py-4 px-6">
-          <h2 class="text-white font-bold" style="font-weight: bolder;">Previous Searches:</h2>
-          <ul id="search-list" class="grid grid-col-1 flex flex-wrap justify-center">
+      <div class="bg-sky-900 w-2/3 bg-opacity-80 mx-auto px-4 md:px-6 lg:px-8 rounded-lg" >
+        <div id="previous-searches" class="my-1 text-center px-6">
+          <h2 class="text-white font-bold text-xl p-2">Previous Searches:</h2>
+          <ul id="search-list" class="row row-span-5 flex flex-wrap justify-center">
             <!-- List of previous searches will be populated here -->
           </ul>
         </div>
@@ -41,16 +44,17 @@
       </div>
 
     
-      <div id="weather-forecast" class="bg-sky-900 container mx-auto px-4 md:px-6 lg:px-8 my-4 text-center rounded-lg">
-        <h2 class="text-white font-bold" style="font-weight: bolder;">Weather Forecast:</h2>
+      <div id="weather-forecast" class="bg-sky-900 w-2/3 bg-opacity-80 mx-auto px-4 md:px-6 lg:px-8 my-4 text-center rounded-lg">
+        <h2 class="text-gray-200 text-xl font-bold p-2">Current weather forecast in <span class="text-white font-bold" id="city-name"></span>:</h2>
         <div id="weather-info"></div>
         <!-- Use js to have the forecast display here -->
         <!-- In CSS set display to none until the the submit button is clicked -->
       </div>
 
-      <div id="clothing-options" class="my-4 text-center flex flex-wrap justify-center">
-        <h2 class="text-white font-bold" style="font-weight: bolder;">Clothing Options:</h2>
-        <div class="text-white font-bold" id="clothing-info"></div>
+      <div id="clothing-options" class="bg-sky-900 w-2/3 bg-opacity-80 mx-auto px-4 md:px-6 lg:px-8 text-center rounded-lg">
+        <h2 class="text-gray-200 font-bold text-xl p-2">Suitable Clothing Options:</h2>
+        <p class="italic text-sm pb-2 text-white">Click below to explore pricing and alternatives!</p>
+        <ul class="text-center flex flex-wrap justify-center" id="clothing-info"></ul>
       </div>
       
     </div>

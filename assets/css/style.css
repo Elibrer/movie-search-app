@@ -1,6 +1,13 @@
-.bg-image {
+/* .bg-image {
     background-image: url('../images/weather-app-background-image.jpg');
     background-size: cover;
     background-position: center;
-  }
+    opacity: 0.3;
+  } */
 
+body {
+  background-image: url('../images/weather-app-background-opacity-25.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
