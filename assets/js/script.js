@@ -165,7 +165,7 @@ function categoryItemRandomiser (clothesData) {
     
         innerContainer.innerHTML = `
             <h4 class="font-bold text-sm">${clothesData.products[randomIndex].name}</h4>
-            <a href="${"https://www.asos.com/au/" + clothesData.products[randomIndex].url}">
+            <a href="${"https://www.asos.com/au/" + clothesData.products[randomIndex].url}" target="_blank">
             <img src="https://${clothesData.products[randomIndex].imageUrl}" class="rounded-lg shadow-lg w-full scale-75">
             </a>
         `;

@@ -6,10 +6,16 @@
 ![HTML Badge](https://img.shields.io/badge/HTML-25.4%25-red)
 ![CSS Badge](https://img.shields.io/badge/CSS-9.9%25-blueviolet)
 
-### Github Link
-- https://github.com/Elibrer/weather-fashion-app
-### Deployment Link
--  https://elibrer.github.io/weather-fashion-app
+## Links
+- [GitHub Repository](https://github.com/Elibrer/weather-fashion-app)
+-  [Deployed Application](https://elibrer.github.io/weather-fashion-app)
+
+## Authors
+
+- Teresa: [teresagithub17](https://github.com/teresagithub17)
+- Ryan: [RyanGolder](https://github.com/RyanGolder)
+- Elijah: [Elibrer](https://github.com/elibrer)
+
 
 ## Usage
 
@@ -22,8 +28,10 @@ This webpage is useful for getting ideas on what to pack for your upcoming trip 
 
 - [Description](#description)
 - [Features](#features)
+- [Documentation](#documentation)
 - [Languages Used](#languages-used)
 - [Outfit Forecast Preview](#full-preview)
+- [Credits](#credits)
 - [License](#license)
 
 
@@ -42,6 +50,13 @@ Enter the city you currently live in for some inspiration for the day or enter a
 - Depending on the current temperature of the selected city, three clothing options will be shown and become available in the bottom of the screen.
 - When pressed, these options will redirect the user to the website and allow them to purchase the items from there.
 
+## Documentation
+Google Docs page to store ideas and information:
+- [Planning Document](https://docs.google.com/document/d/1tlqwegM2-y9XgI4FwGl6Yx2GwtaKLGg5eVWhkjZvldM/edit?usp=sharing/)
+
+Google Slides powerpoint for our group presentation:
+- [Presentation](https://docs.google.com/presentation/d/1F9yPo9jogn1VkJ_jXOAwknGyZlUTi9mNqzg_zsCUe8c/edit?usp=sharing)
+
 ## Languages Used
 - ### **HTML**
 - ### **CSS**
@@ -50,6 +65,24 @@ Enter the city you currently live in for some inspiration for the day or enter a
 ## Outfit Forecast Preview
 
 ![Landing page of the Outfit Forecast application, displaying search inputs, recent search history, current weather of the selected city, and three items of clothing displayed relative to the current weather of that city](./assets/images/outfit-forecast-preview.png "outfit-forecast-preview")
+
+
+## Credits
+
+[Creating links in a README.md file](https://docs.readme.com/main/docs/linking-to-pages)
+
+[Badge generator](https://shields.io/)
+
+[Button click on enter press](https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp)
+
+[JavaScript library for accessing time and date](https://day.js.org/)
+
+[ASOS API page and documentation](https://rapidapi.com/apidojo/api/asos2)
+
+[Using fetch requests](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+
+[Opening a different tab when a link is pressed](https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/)
+
 
 ## License
 
