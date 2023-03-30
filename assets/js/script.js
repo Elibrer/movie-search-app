@@ -66,13 +66,6 @@ const mildMensURL = {
 
 //Gathers information from localstorage, or sets array to blank if local is empty.
 let recentSearchArr = JSON.parse(localStorage.getItem("recentSearches")) || ["Sydney"];
-console.log(recentSearchArr);
-
-
-
-
-
-
 
 //On page load.
 function init() {     
@@ -91,7 +84,6 @@ function init() {
 
 //Main function to search for a selected cities weather, while executing other functions as it progresses.
 function cityTempSearch(city) {
-    console.log(recentSearch)
     if (pageInit === false) {
         recentSearch = inputField.val();
     }
@@ -125,17 +117,9 @@ function cityTempSearch(city) {
 
         weatherInfo.attr("class", "text-2xl text-white font-bold pb-2");
         weatherInfo.text(cityTemp + "°C");
-/*-----------------------------------------------------------------------------*/
 
-        /*     VIP      */
-        //COMMENT THIS OUT for RANDOMISER
-        //getClothesData(cityTemp);
+        getClothesData(cityTemp);
 
-        /*     Phase 2      */
-        //COMMENT THIS OUT for SINGLE CLOTHES
-        getRandomClothesData(cityTemp);
-
-/*-----------------------------------------------------------------------------*/
     })
     .catch((error) => {
         alert("Please enter a valid city name");
@@ -152,36 +136,6 @@ function displayTime() {
   };
   
 displayTime();
-
-//Function to randomise three cards with data from category fetch, while ensuring duplicates don't occur for Phase 2.
-function categoryItemRandomiser (clothesData) {   
-    
-    let clothesDataLength = clothesData.products.length
-    let nonDuplicateArr = [];
-    for (i = 0; i < 3; i++) {
-        let randomIndex = 0;
-        do {
-            randomIndex = Math.floor(Math.random() * clothesDataLength);
-        } while (nonDuplicateArr.includes(randomIndex));
-        nonDuplicateArr.push(randomIndex);
-        var clothesContainer = document.createElement('article');
-        var innerContainer = document.createElement('div');
-    
-        clothesContainer.setAttribute("class", "mx-2.5 rounded-lg flex justify-center items-center w-full sm:w-3/12 bg-sky-900 text-white m-2");
-        innerContainer.setAttribute("class", "flex flex-wrap justify-center items-center mx-auto p-3");
-        
-
-        clothingInfo.append(clothesContainer);
-        clothesContainer.append(innerContainer);
-    
-        innerContainer.innerHTML = `
-            <h4 class="font-bold text-sm">${clothesData.products[randomIndex].name}</h4>
-            <a href="${"https://www.asos.com/au/" + clothesData.products[randomIndex].url}">
-            <img src="https://${clothesData.products[randomIndex].imageUrl}" class="rounded-lg shadow-lg w-full scale-75">
-            </a>
-        `;
-    }
-}
 
 //Function to create and append buttons with the recentSearch current value, limiting to 5 elements.
 function getRecentSearch (recentSearch) {
@@ -204,55 +158,6 @@ function getRecentSearch (recentSearch) {
     pageInit = false;
 }
 
-//Function to fetch clothing category data for Phase 2.
-function getRandomClothesData (x) {
-    console.log(x);
-    clothingInfo.text('');
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': asosAPIKey,
-            'X-RapidAPI-Host': 'asos2.p.rapidapi.com'
-        }
-    };
-
-    if (x >= 26) {
-        console.log("Summer time!");
-        fetch('https://asos2.p.rapidapi.com/products/v2/list?store=AU&offset=0&categoryId='+ mensSummerCID + '&limit=48&country=AU&sort=freshness&currency=AUD&sizeSchema=AU&lang=en-AU', options)
-        .then(function (response) {
-            if (response.ok) {
-                return response.json();
-            }       
-         })
-        .then(function (data) {
-            console.log(data);
-            categoryItemRandomiser(data);
-
-        })
-        .catch((error) => {
-            console.error("There has been a problem with your fetch operation:");
-        });
-    }
-    else {
-        console.log("Winter time!");
-        fetch('https://asos2.p.rapidapi.com/products/v2/list?store=AU&offset=0&categoryId='+ mensWinterCID + '&limit=48&country=AU&sort=freshness&currency=AUD&sizeSchema=AU&lang=en-AU', options)
-        .then(function (response) {
-            if (response.ok) {
-                return response.json();
-            }       
-         })
-        .then(function (data) {
-            console.log(data);
-            categoryItemRandomiser(data);
-
-        })
-        .catch((error) => {
-            console.error("There has been a problem with your fetch operation:");
-        });
-    } 
-}
-
-
 //Function to display the individually selected clothing items for VIP .
 function displayClothes(clothesData) {
 
@@ -274,7 +179,6 @@ function displayClothes(clothesData) {
             localDataIndex = i;
         }
     }
-    console.log("Local data index is: " + localDataIndex);
 
     innerContainer.innerHTML = `
     <h4 class="font-bold text-sm">${clothesData.name}</h4>
@@ -424,55 +328,6 @@ function getClothesData (x) {
         });
     }
 }
-
-//getAPI function for TESTING ONLY
-//function getAPI() {
-
-    //Options for each fetch request to ensure the header is seen by the ASOS server, allowing access
-    // const options = {
-    //     method: 'GET',
-    //     headers: {
-    //         'X-RapidAPI-Key': 'f172757ce6msh320b0dfbc212186p166555jsnaab616efc02d',
-    //         'X-RapidAPI-Host': 'asos2.p.rapidapi.com'
-    //     }
-    // };
-
-    // //Get Product
-    // fetch('https://asos2.p.rapidapi.com/products/v3/detail?id=9851612&lang=en-AU&store=AU&sizeSchema=AU&currency=AUD', options)
-    // .then(function (response) {
-    //     return response.json();
-    // })
-    // .then(function (data) {
-    //     console.log(data);
-    // })
-    // .catch((error) => {
-    //     console.error("There has been a problem with your fetch operation:");
-    // });
-
-    //Get category - to be used for phase 2 of product design
-    // fetch('https://asos2.p.rapidapi.com/products/v2/list?store=AU&offset=0&categoryId='+ catagoryObj + '&limit=48&country=AU&sort=freshness&currency=AUD&sizeSchema=AU&lang=en-AU', options)
-    // .then(function (response) {
-    //     return response.json();
-    // })
-    // .then(function (data) {
-    //     console.log(data);
-    // })
-    // .catch((error) => {
-    //     console.error("There has been a problem with your fetch operation:");
-    // });
-
-    //Get everything
-    // fetch('https://asos2.p.rapidapi.com/categories/list?country=AU&lang=en-AU', options)
-    // .then(function (response) {
-    //     return response.json();
-    // })
-    // .then(function (data) {
-    //     console.log(data);
-    // })
-    // .catch((error) => {
-    //     console.error("There has been a problem with your fetch operation:");
-    // });
-//}
 
 init();
 
