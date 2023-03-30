@@ -2,9 +2,9 @@
 *An interactive weather app to suggest clothing options based on city temperature.*
 
 ![Languages Badge](https://img.shields.io/badge/Languages-3-blue)
-![JS Badge](https://img.shields.io/badge/JavaScript-80.7%25-yellow)
-![HTML Badge](https://img.shields.io/badge/HTML-16.1%25-red)
-![CSS Badge](https://img.shields.io/badge/CSS-3.2%25-blueviolet)
+![JS Badge](https://img.shields.io/badge/JavaScript-64.7%25-yellow)
+![HTML Badge](https://img.shields.io/badge/HTML-25.4%25-red)
+![CSS Badge](https://img.shields.io/badge/CSS-9.9%25-blueviolet)
 
 ### Github Link
 - https://github.com/Elibrer/weather-fashion-app
