@@ -5,6 +5,10 @@ const weatherForecast = $("#weather-forecast");
 const weatherInfo = $("#weather-info");
 const clothingOptions = $("#clothing-options");
 const clothingInfo = $("#clothing-info");
+const modalBtn = $("#modal-close");
+const modal = document.getElementById("myModal");
+
+
 
 const searchButton = $("button");
 const inputField = $("#city");
@@ -89,9 +93,8 @@ function cityTempSearch(city) {
         recentSearch = inputField.val();
     }
     recentSearch = recentSearch.charAt(0).toUpperCase() + recentSearch.slice(1).toLowerCase();
-    cityName.text(recentSearch);
     if (!city) {
-        alert('Please enter a value into the search bar.');
+        modal.style.display = "block";
         return;
     }
 
@@ -109,6 +112,8 @@ function cityTempSearch(city) {
         throw new Error('Invalid city name');
     })
     .then(function (data) {
+        cityName.text(recentSearch);
+
         getRecentSearch(recentSearch);
 
         inputField.val("");
@@ -122,8 +127,8 @@ function cityTempSearch(city) {
         getRandomClothesData(cityTemp);
     })
     .catch((error) => {
-        alert("Please enter a valid city name");
         inputField.val("");
+        modal.style.display = "block";
     });
 }
 
@@ -236,14 +241,31 @@ function getRandomClothesData (x) {
     } 
 }
 
-init();
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+//Button for modal element
+modalBtn.on("click", function(event) {
+    modal.style.display = "none";
+})
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 
 //Selects buttons within the '#search-list' element, copying their value data to be used within the main function.
 $(document).on('click', "#search-list button", function(event){
     let buttonContent = $(this).text();
     inputField.val(buttonContent);
     let city = inputField.val()
-
     cityTempSearch(inputField.val());
 })
 
@@ -251,6 +273,8 @@ submitCityBtn.on("click", function(event){
     event.preventDefault();
     let city = inputField.val()
     cityTempSearch(city);
+    
 })
 
+init();
 })
